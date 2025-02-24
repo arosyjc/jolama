@@ -12,14 +12,33 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jlama.version>0.8.4</jlama.version>
   </properties>
 
   <dependencies>
+
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <groupId>com.github.tjake</groupId>
+      <artifactId>jlama-core</artifactId>
+      <version>${jlama.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.tjake</groupId>
+      <artifactId>jlama-native</artifactId>
+      <!-- supports linux-x86_64, macos-x86_64/aarch_64, windows-x86_64
+           Use https://github.com/trustin/os-maven-plugin to detect os and arch -->
+      <classifier>${os.detected.name}-${os.detected.arch}</classifier>
+      <version>${jlama.version}</version>
     </dependency>
   </dependencies>
+  <build>
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.0</version>
+      </extension>
+    </extensions>
+  </build>
 </project>
